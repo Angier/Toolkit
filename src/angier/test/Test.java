@@ -1,4 +1,4 @@
-package angier.toolkit.test;
+package angier.test;
 public class Test {
 
 	public static void main(String[] args) {
