@@ -4,26 +4,26 @@ import java.util.List;
 
 import org.apache.commons.collections.IteratorUtils;
 /**
- * ·ÖÒ³²éÑ¯½á¹ûBean
+ * åˆ†é¡µæŸ¥è¯¢ç»“æœBean
  * @version 1.0
  * @since 1.0
  * */
 public class Page<T> implements Iterable<T>{
 
-	/** ²éÑ¯½á¹û */
+	/** æŸ¥è¯¢ç»“æœ */
 	private List<T> listResult;
-	/** ·ÖÒ³ĞÅÏ¢Bean */
+	/** åˆ†é¡µä¿¡æ¯Bean */
 	private PageBean pageBean;
 	
 	/**
-	 * (¿Õ)
+	 * (ç©º)
 	 */
 	public Page() {}
 	
 	/**
-	 * ¸ù¾İ²éÑ¯½á¹û¡¢·ÖÒ³ĞÅÏ¢¹¹Ôì
-	 * @param lstResult ²éÑ¯½á¹û
-	 * @param pageBean ·ÖÒ³ĞÅÏ¢Bean
+	 * æ ¹æ®æŸ¥è¯¢ç»“æœã€åˆ†é¡µä¿¡æ¯æ„é€ 
+	 * @param lstResult æŸ¥è¯¢ç»“æœ
+	 * @param pageBean åˆ†é¡µä¿¡æ¯Bean
 	 */
 	public Page(List<T> listResult, PageBean pageBean) {
 		this.listResult = listResult;
@@ -31,38 +31,38 @@ public class Page<T> implements Iterable<T>{
 	}
 	
 	/**
-	 * È¡µÃ²éÑ¯½á¹û
-	 * @return ²éÑ¯½á¹û
+	 * å–å¾—æŸ¥è¯¢ç»“æœ
+	 * @return æŸ¥è¯¢ç»“æœ
 	 */
 	public List<T> getListResult() {
 		return listResult;
 	}
 	/**
-	 * ÉèÖÃ²éÑ¯½á¹û
-	 * @param lstResult ²éÑ¯½á¹û
+	 * è®¾ç½®æŸ¥è¯¢ç»“æœ
+	 * @param lstResult æŸ¥è¯¢ç»“æœ
 	 */
 	public void setListResult(List<T> listResult) {
 		this.listResult = listResult;
 	}
 	
 	/**
-	 * È¡µÃ·ÖÒ³ĞÅÏ¢Bean
-	 * @return ·ÖÒ³ĞÅÏ¢Bean
+	 * å–å¾—åˆ†é¡µä¿¡æ¯Bean
+	 * @return åˆ†é¡µä¿¡æ¯Bean
 	 */
 	public PageBean getPageBean() {
 		return pageBean;
 	}
 	/**
-	 * ÉèÖÃ·ÖÒ³ĞÅÏ¢Bean
-	 * @param pageBean ·ÖÒ³ĞÅÏ¢Bean
+	 * è®¾ç½®åˆ†é¡µä¿¡æ¯Bean
+	 * @param pageBean åˆ†é¡µä¿¡æ¯Bean
 	 */
 	public void setPageBean(PageBean pageBean) {
 		this.pageBean = pageBean;
 	}
 
-	// -- ·ÃÎÊ²éÑ¯½á¹ûº¯Êı --//
+	// -- è®¿é—®æŸ¥è¯¢ç»“æœå‡½æ•° --//
 	/**
-	 * ÊµÏÖIterable½Ó¿Ú,¿ÉÒÔfor(Object item : page)±éÀúÊ¹ÓÃ
+	 * å®ç°Iterableæ¥å£,å¯ä»¥for(Object item : page)éå†ä½¿ç”¨
 	 */
 	@SuppressWarnings("unchecked")
 	public Iterator<T> iterator() {

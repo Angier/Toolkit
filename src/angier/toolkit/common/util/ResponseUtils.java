@@ -8,50 +8,50 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * HttpServletResponse°ïÖúÀà
+ * HttpServletResponseå¸®åŠ©ç±»
  */
 public final class ResponseUtils {
 	
 	public static Logger log = LoggerFactory.getLogger(ResponseUtils.class);
 
 	/**
-	 * ·¢ËÍÎÄ±¾¡£Ê¹ÓÃGBK±àÂë¡£
+	 * å‘é€æ–‡æœ¬ã€‚ä½¿ç”¨GBKç¼–ç ã€‚
 	 * @param response	HttpServletResponse
-	 * @param text		·¢ËÍµÄ×Ö·û´®
+	 * @param text		å‘é€çš„å­—ç¬¦ä¸²
 	 */
 	public static void responseText(HttpServletResponse response, String text) {
 		response(response, "text/plain;charset=GBK", text);
 	}
 
 	/**
-	 * ·¢ËÍjson¡£Ê¹ÓÃGBK±àÂë¡£
+	 * å‘é€jsonã€‚ä½¿ç”¨GBKç¼–ç ã€‚
 	 * @param response	HttpServletResponse
-	 * @param text		 ·¢ËÍµÄ×Ö·û´®
+	 * @param text		 å‘é€çš„å­—ç¬¦ä¸²
 	 */
 	public static void responseJson(HttpServletResponse response, String text) {
 		response(response, "application/json;charset=GBK", text);
 	}
 	
 	/**
-	 * ·¢ËÍhtml¡£Ê¹ÓÃGBK±àÂë¡£
+	 * å‘é€htmlã€‚ä½¿ç”¨GBKç¼–ç ã€‚
 	 * @param response	HttpServletResponse
-	 * @param text		 ·¢ËÍµÄ×Ö·û´®
+	 * @param text		 å‘é€çš„å­—ç¬¦ä¸²
 	 */
 	public static void responseHtml(HttpServletResponse response, String text) {
 		response(response, "text/html;charset=GBK", text);
 	}
 
 	/**
-	 * ·¢ËÍxml¡£Ê¹ÓÃGBK±àÂë¡£
+	 * å‘é€xmlã€‚ä½¿ç”¨GBKç¼–ç ã€‚
 	 * @param response	HttpServletResponse
-	 * @param text		 ·¢ËÍµÄ×Ö·û´®
+	 * @param text		 å‘é€çš„å­—ç¬¦ä¸²
 	 */
 	public static void responseXml(HttpServletResponse response, String text) {
 		response(response, "text/xml;charset=GBK", text);
 	}
 
 	/**
-	 * ·¢ËÍÄÚÈİ¡£Ê¹ÓÃGBK±àÂë¡£
+	 * å‘é€å†…å®¹ã€‚ä½¿ç”¨GBKç¼–ç ã€‚
 	 * @param response
 	 * @param contentType
 	 * @param text
@@ -73,7 +73,7 @@ public final class ResponseUtils {
 	
 	/**
 	 * 
-	 * ·µ»ØÒÑ¸ñÊ½»¯µÄJson×Ö·û´® UTF8
+	 * è¿”å›å·²æ ¼å¼åŒ–çš„Jsonå­—ç¬¦ä¸² UTF8
 	 * 
 	 */
 	public static void respnseWriteJsonUTF8(String jsonstr, HttpServletResponse response) {
@@ -93,7 +93,7 @@ public final class ResponseUtils {
 
 	/**
 	 * 
-	 * ·µ»ØÒÑ¸ñÊ½»¯µÄJson×Ö·û´® GBK
+	 * è¿”å›å·²æ ¼å¼åŒ–çš„Jsonå­—ç¬¦ä¸² GBK
 	 * 
 	 */
 	public static void respnseWriteJsonGBK(String jsonstr, HttpServletResponse response) {

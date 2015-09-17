@@ -1,6 +1,6 @@
 package angier.toolkit.mybatis.dialect;
 /**
- * Êı¾İ¿â·½ÑÔ³éÏóÀà
+ * æ•°æ®åº“æ–¹è¨€æŠ½è±¡ç±»
  * @version 1.0
  * @since 1.0
  * */
@@ -12,7 +12,7 @@ public interface DBDialect {
 	}
 	
 	/**
-	 * µÃµ½·ÖÒ³²éÑ¯Óï¾ä
+	 * å¾—åˆ°åˆ†é¡µæŸ¥è¯¢è¯­å¥
 	  * @Title: getLimitString
 	  * @param @param sql
 	  * @param @param skipResults
@@ -24,7 +24,7 @@ public interface DBDialect {
 	public abstract String getLimitString(String sql, int skipResults, int maxResults);
 	
 	/**
-	 *  µÃµ½²éÑ¯×ÜÊıµÄsql
+	 *  å¾—åˆ°æŸ¥è¯¢æ€»æ•°çš„sql
 	  * @Title: getCountString
 	  * @param @param querySelect
 	  * @param @return

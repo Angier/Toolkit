@@ -4,7 +4,7 @@ import java.util.Enumeration;
 
 public class GetProperties {
 
-	//ÏµÍ³ÊôÐÔ  
+	//ç³»ç»Ÿå±žæ€§  
 	public static void main(String[] args) {
 		java.util.Properties pp = System.getProperties();
 		Enumeration<?> names = pp.propertyNames();

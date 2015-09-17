@@ -6,18 +6,18 @@ import org.apache.commons.lang.StringUtils;
 
 import angier.toolkit.common.util.constants.AppConstants;
 /**
- * Óë¾ßÌåORMÊµÏÖÎŞ¹ØµÄ·ÖÒ³²ÎÊı¼°²éÑ¯½á¹û·â×°
- * ±¾ÀàÖ»·â×°ÊäÈëÊä³ö²ÎÊı, ¾ßÌåµÄ·ÖÒ³Âß¼­È«²¿·â×°ÔÚPaginatorÀà.
+ * ä¸å…·ä½“ORMå®ç°æ— å…³çš„åˆ†é¡µå‚æ•°åŠæŸ¥è¯¢ç»“æœå°è£…
+ * æœ¬ç±»åªå°è£…è¾“å…¥è¾“å‡ºå‚æ•°, å…·ä½“çš„åˆ†é¡µé€»è¾‘å…¨éƒ¨å°è£…åœ¨Paginatorç±».
  * @version 1.0
  * @since 1.0
  * */
 public class PageBean{
-	// -- ¹«¹²±äÁ¿ --//
+	// -- å…¬å…±å˜é‡ --//
 	public static final String ASC = "asc";
 	public static final String DESC = "desc";
 	private int DEF_PAGE_VIEW_SIZE = 15;
 
-	// -- ·ÖÒ³²éÑ¯²ÎÊı --//
+	// -- åˆ†é¡µæŸ¥è¯¢å‚æ•° --//
 	protected int pageNo = 1;
 	protected int pageSize = DEF_PAGE_VIEW_SIZE;
 	protected boolean autoCount = true;
@@ -28,10 +28,10 @@ public class PageBean{
 	private MyBatisSql myBatisSql = null;
 	private long totalPage = 1;
 	
-	private long minPage;//´ÓµÚ¼¸Ò³¿ªÊ¼
-	private long maxPage;//µ½µÚ¼¸Ò³½áÊø
+	private long minPage;//ä»ç¬¬å‡ é¡µå¼€å§‹
+	private long maxPage;//åˆ°ç¬¬å‡ é¡µç»“æŸ
 
-	// -- ¹¹Ôìº¯Êı --//
+	// -- æ„é€ å‡½æ•° --//
 	public PageBean() {
 	}
 
@@ -44,16 +44,16 @@ public class PageBean{
 		setPageSize(pageSize);
 	}
 
-	// -- ·ÖÒ³²ÎÊı·ÃÎÊº¯Êı --//
+	// -- åˆ†é¡µå‚æ•°è®¿é—®å‡½æ•° --//
 	/**
-	 * »ñµÃµ±Ç°Ò³µÄÒ³ºÅ,ĞòºÅ´Ó1¿ªÊ¼,Ä¬ÈÏÎª1.
+	 * è·å¾—å½“å‰é¡µçš„é¡µå·,åºå·ä»1å¼€å§‹,é»˜è®¤ä¸º1.
 	 */
 	public int getPageNo() {
 		return pageNo;
 	}
 
 	/**
-	 * ÉèÖÃµ±Ç°Ò³µÄÒ³ºÅ,ĞòºÅ´Ó1¿ªÊ¼,µÍÓÚ1Ê±×Ô¶¯µ÷ÕûÎª1.
+	 * è®¾ç½®å½“å‰é¡µçš„é¡µå·,åºå·ä»1å¼€å§‹,ä½äº1æ—¶è‡ªåŠ¨è°ƒæ•´ä¸º1.
 	 */
 	public void setPageNo(final int pageNo) {
 		this.pageNo = pageNo;
@@ -64,55 +64,55 @@ public class PageBean{
 	}
 
 	/**
-	 * »ñµÃÃ¿Ò³µÄ¼ÇÂ¼ÊıÁ¿, Ä¬ÈÏÎª-1.
+	 * è·å¾—æ¯é¡µçš„è®°å½•æ•°é‡, é»˜è®¤ä¸º-1.
 	 */
 	public int getPageSize() {
 		return pageSize;
 	}
 
 	/**
-	 * ÉèÖÃÃ¿Ò³µÄ¼ÇÂ¼ÊıÁ¿.
+	 * è®¾ç½®æ¯é¡µçš„è®°å½•æ•°é‡.
 	 */
 	public void setPageSize(final int pageSize) {
 		this.pageSize = pageSize;
 	}
 
 	/**
-	 * »ñµÃÅÅĞò×Ö¶Î,ÎŞÄ¬ÈÏÖµ. ¶à¸öÅÅĞò×Ö¶ÎÊ±ÓÃ','·Ö¸ô.
+	 * è·å¾—æ’åºå­—æ®µ,æ— é»˜è®¤å€¼. å¤šä¸ªæ’åºå­—æ®µæ—¶ç”¨','åˆ†éš”.
 	 */
 	public String getOrderBy() {
 		return orderBy;
 	}
 
 	/**
-	 * ÉèÖÃÅÅĞò×Ö¶Î,¶à¸öÅÅĞò×Ö¶ÎÊ±ÓÃ','·Ö¸ô.
+	 * è®¾ç½®æ’åºå­—æ®µ,å¤šä¸ªæ’åºå­—æ®µæ—¶ç”¨','åˆ†éš”.
 	 */
 	public void setOrderBy(final String orderBy) {
 		this.orderBy = orderBy;
 	}
 
 	/**
-	 * »ñµÃÅÅĞò·½Ïò, ÎŞÄ¬ÈÏÖµ.
+	 * è·å¾—æ’åºæ–¹å‘, æ— é»˜è®¤å€¼.
 	 */
 	public String getOrder() {
 		return order;
 	}
 
 	/**
-	 * ÉèÖÃÅÅĞò·½Ê½Ïò.
+	 * è®¾ç½®æ’åºæ–¹å¼å‘.
 	 * 
 	 * @param order
-	 *            ¿ÉÑ¡ÖµÎªdesc»òasc,¶à¸öÅÅĞò×Ö¶ÎÊ±ÓÃ','·Ö¸ô.
+	 *            å¯é€‰å€¼ä¸ºdescæˆ–asc,å¤šä¸ªæ’åºå­—æ®µæ—¶ç”¨','åˆ†éš”.
 	 */
 	public void setOrder(final String order) {
 		String lowcaseOrder = StringUtils.lowerCase(order);
 
-		// ¼ì²éorder×Ö·û´®µÄºÏ·¨Öµ
+		// æ£€æŸ¥orderå­—ç¬¦ä¸²çš„åˆæ³•å€¼
 		String[] orders = StringUtils.split(lowcaseOrder, ',');
 		for (String orderStr : orders) {
 			if (!StringUtils.equals(DESC, orderStr)
 					&& !StringUtils.equals(ASC, orderStr)) {
-				throw new IllegalArgumentException("ÅÅĞò·½Ïò" + orderStr + "²»ÊÇºÏ·¨Öµ");
+				throw new IllegalArgumentException("æ’åºæ–¹å‘" + orderStr + "ä¸æ˜¯åˆæ³•å€¼");
 			}
 		}
 
@@ -120,7 +120,7 @@ public class PageBean{
 	}
 
 	/**
-	 * ÊÇ·ñÒÑÉèÖÃÅÅĞò×Ö¶Î,ÎŞÄ¬ÈÏÖµ.
+	 * æ˜¯å¦å·²è®¾ç½®æ’åºå­—æ®µ,æ— é»˜è®¤å€¼.
 	 */
 	public boolean isOrderBySetted() {
 		return (StringUtils.isNotBlank(orderBy) && StringUtils
@@ -128,35 +128,35 @@ public class PageBean{
 	}
 
 	/**
-	 * ¸ù¾İpageNoºÍpageSize¼ÆËãµ±Ç°Ò³µÚÒ»Ìõ¼ÇÂ¼ÔÚ×Ü½á¹û¼¯ÖĞµÄÎ»ÖÃ,ĞòºÅ´Ó0¿ªÊ¼. ÓÃÓÚMysql,Hibernate.
+	 * æ ¹æ®pageNoå’ŒpageSizeè®¡ç®—å½“å‰é¡µç¬¬ä¸€æ¡è®°å½•åœ¨æ€»ç»“æœé›†ä¸­çš„ä½ç½®,åºå·ä»0å¼€å§‹. ç”¨äºMysql,Hibernate.
 	 */
 	public int getOffset() {
 		return ((pageNo - 1) * pageSize);
 	}
 
 	/**
-	 * ¸ù¾İpageNoºÍpageSize¼ÆËãµ±Ç°Ò³µÚÒ»Ìõ¼ÇÂ¼ÔÚ×Ü½á¹û¼¯ÖĞµÄÎ»ÖÃ,ĞòºÅ´Ó1¿ªÊ¼. ÓÃÓÚOracle.
+	 * æ ¹æ®pageNoå’ŒpageSizeè®¡ç®—å½“å‰é¡µç¬¬ä¸€æ¡è®°å½•åœ¨æ€»ç»“æœé›†ä¸­çš„ä½ç½®,åºå·ä»1å¼€å§‹. ç”¨äºOracle.
 	 */
 	public int getStartRow() {
 		return getOffset() + 1;
 	}
 
 	/**
-	 * ¸ù¾İpageNoºÍpageSize¼ÆËãµ±Ç°Ò³×îºóÒ»Ìõ¼ÇÂ¼ÔÚ×Ü½á¹û¼¯ÖĞµÄÎ»ÖÃ, ĞòºÅ´Ó1¿ªÊ¼. ÓÃÓÚOracle.
+	 * æ ¹æ®pageNoå’ŒpageSizeè®¡ç®—å½“å‰é¡µæœ€åä¸€æ¡è®°å½•åœ¨æ€»ç»“æœé›†ä¸­çš„ä½ç½®, åºå·ä»1å¼€å§‹. ç”¨äºOracle.
 	 */
 	public int getEndRow() {
 		return pageSize * pageNo;
 	}
 
 	/**
-	 * »ñµÃ×Ü¼ÇÂ¼Êı, Ä¬ÈÏÖµÎª-1.
+	 * è·å¾—æ€»è®°å½•æ•°, é»˜è®¤å€¼ä¸º-1.
 	 */
 	public int getTotalItems() {
 		return totalItems;
 	}
 
 	/**
-	 * ÉèÖÃ×Ü¼ÇÂ¼Êı.
+	 * è®¾ç½®æ€»è®°å½•æ•°.
 	 */
 	public void setTotalItems(final int totalItems) {
 		this.totalItems = totalItems;
@@ -172,21 +172,21 @@ public class PageBean{
 	}
 
 	/**
-	 * ÊÇ·ñ×îºóÒ»Ò³.
+	 * æ˜¯å¦æœ€åä¸€é¡µ.
 	 */
 	public boolean isLastPage() {
 		return pageNo == getTotalPages();
 	}
 
 	/**
-	 * ÊÇ·ñ»¹ÓĞÏÂÒ»Ò³.
+	 * æ˜¯å¦è¿˜æœ‰ä¸‹ä¸€é¡µ.
 	 */
 	public boolean isHasNextPage() {
 		return (pageNo + 1 <= getTotalPages());
 	}
 
 	/**
-	 * È¡µÃÏÂÒ³µÄÒ³ºÅ, ĞòºÅ´Ó1¿ªÊ¼. µ±Ç°Ò³ÎªÎ²Ò³Ê±ÈÔ·µ»ØÎ²Ò³ĞòºÅ.
+	 * å–å¾—ä¸‹é¡µçš„é¡µå·, åºå·ä»1å¼€å§‹. å½“å‰é¡µä¸ºå°¾é¡µæ—¶ä»è¿”å›å°¾é¡µåºå·.
 	 */
 	public int getNextPage() {
 		if (isHasNextPage()) {
@@ -197,21 +197,21 @@ public class PageBean{
 	}
 
 	/**
-	 * ÊÇ·ñµÚÒ»Ò³.
+	 * æ˜¯å¦ç¬¬ä¸€é¡µ.
 	 */
 	public boolean isFirstPage() {
 		return pageNo == 1;
 	}
 
 	/**
-	 * ÊÇ·ñ»¹ÓĞÉÏÒ»Ò³.
+	 * æ˜¯å¦è¿˜æœ‰ä¸Šä¸€é¡µ.
 	 */
 	public boolean isHasPrePage() {
 		return (pageNo - 1 >= 1);
 	}
 
 	/**
-	 * È¡µÃÉÏÒ³µÄÒ³ºÅ, ĞòºÅ´Ó1¿ªÊ¼. µ±Ç°Ò³ÎªÊ×Ò³Ê±·µ»ØÊ×Ò³ĞòºÅ.
+	 * å–å¾—ä¸Šé¡µçš„é¡µå·, åºå·ä»1å¼€å§‹. å½“å‰é¡µä¸ºé¦–é¡µæ—¶è¿”å›é¦–é¡µåºå·.
 	 */
 	public int getPrePage() {
 		if (isHasPrePage()) {
@@ -222,7 +222,7 @@ public class PageBean{
 	}
 
 	/**
-	 * ¸ù¾İpageSizeÓëtotalItems¼ÆËã×ÜÒ³Êı, Ä¬ÈÏÖµÎª-1.
+	 * æ ¹æ®pageSizeä¸totalItemsè®¡ç®—æ€»é¡µæ•°, é»˜è®¤å€¼ä¸º-1.
 	 */
 	public long getTotalPages() {
 		if (totalItems < 0) {
@@ -250,9 +250,9 @@ public class PageBean{
 	}
 
 	/**
-	 * ¼ÆËãÒÔµ±Ç°Ò³ÎªÖĞĞÄµÄÒ³ÃæÁĞ±í,Èç"Ê×Ò³,23,24,25,26,27,Ä©Ò³"
-	 * @param count ĞèÒª¼ÆËãµÄÁĞ±í´óĞ¡
-	 * @return pageNoÁĞ±í
+	 * è®¡ç®—ä»¥å½“å‰é¡µä¸ºä¸­å¿ƒçš„é¡µé¢åˆ—è¡¨,å¦‚"é¦–é¡µ,23,24,25,26,27,æœ«é¡µ"
+	 * @param count éœ€è¦è®¡ç®—çš„åˆ—è¡¨å¤§å°
+	 * @return pageNoåˆ—è¡¨
 	 */
 	private List<Long> showSlider(int count){
 		int halfSize = count / 2;
@@ -291,7 +291,7 @@ public class PageBean{
 	}
 	
 	/**
-	 * Ò³ÃæÉÏÕ¹Ê¾µÄ×îĞ¡Ò³Âë
+	 * é¡µé¢ä¸Šå±•ç¤ºçš„æœ€å°é¡µç 
 	 */
 	public long getMinPage() {
 		if(totalPage>0 && totalPage-this.pageNo<4){
@@ -306,7 +306,7 @@ public class PageBean{
 	}
 	
 	/**
-	 * Ò³ÃæÉÏÕ¹Ê¾µÄ×î´óÒ³Âë
+	 * é¡µé¢ä¸Šå±•ç¤ºçš„æœ€å¤§é¡µç 
 	 */
 
 	public long getMaxPage() {

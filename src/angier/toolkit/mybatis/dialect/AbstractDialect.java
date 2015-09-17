@@ -4,29 +4,29 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * ·ÖÒ³³éÏó¹ÜÀíÀà
+ * åˆ†é¡µæŠ½è±¡ç®¡ç†ç±»
  * @version 1.0
  * @since 1.0
  * */
 public abstract class AbstractDialect implements DBDialect{
 
 	/**
-	 * µÃµ½·ÖÒ³µÄSQL
-	 * @param offset 	Æ«ÒÆÁ¿
-	 * @param limit		Î»ÖÃ
-	 * @return	·ÖÒ³SQL
+	 * å¾—åˆ°åˆ†é¡µçš„SQL
+	 * @param offset 	åç§»é‡
+	 * @param limit		ä½ç½®
+	 * @return	åˆ†é¡µSQL
 	 */
 	public abstract String getLimitString(String querySelect,int offset, int limit);
 	
 	/**
-	 * µÃµ½²éÑ¯×ÜÊıµÄsql
+	 * å¾—åˆ°æŸ¥è¯¢æ€»æ•°çš„sql
 	 */
 	public  String getCountString(String querySelect) {
 		querySelect		= getLineSql(querySelect);
 		int orderIndex  = getLastOrderInsertPoint(querySelect);
 		int formIndex   = getAfterFormInsertPoint(querySelect);
 		String select   = querySelect.substring(0, formIndex);
-		//Èç¹ûSELECT ÖĞ°üº¬ DISTINCT Ö»ÄÜÔÚÍâ²ã°üº¬COUNT
+		//å¦‚æœSELECT ä¸­åŒ…å« DISTINCT åªèƒ½åœ¨å¤–å±‚åŒ…å«COUNT
 		if (select.toLowerCase().indexOf("select distinct") != -1 || querySelect.toLowerCase().indexOf("group by")!=-1) {
 			return new StringBuffer(querySelect.length()).append(
 					"select count(1) count from (").append(
@@ -40,28 +40,28 @@ public abstract class AbstractDialect implements DBDialect{
 	}
 	
 	/**
-	 * µÃµ½×îºóÒ»¸öOrder ByµÄ²åÈëµãÎ»ÖÃ
-	 * @return ·µ»Ø×îºóÒ»¸öOrder By²åÈëµãµÄÎ»ÖÃ
+	 * å¾—åˆ°æœ€åä¸€ä¸ªOrder Byçš„æ’å…¥ç‚¹ä½ç½®
+	 * @return è¿”å›æœ€åä¸€ä¸ªOrder Byæ’å…¥ç‚¹çš„ä½ç½®
 	 */
 	protected  int getLastOrderInsertPoint(String querySelect){
 		int orderIndex = querySelect.toLowerCase().lastIndexOf("order by");
 		if (orderIndex == -1 || !isBracketCanPartnership(querySelect.substring(orderIndex,querySelect.length()))) {
-			throw new RuntimeException("My SQL ·ÖÒ³±ØĞëÒªÓĞOrder by Óï¾ä!");
+			throw new RuntimeException("My SQL åˆ†é¡µå¿…é¡»è¦æœ‰Order by è¯­å¥!");
 		}
 		return orderIndex;
 	}
 	/**
-	 * ½«SQLÓï¾ä±ä³ÉÒ»ÌõÓï¾ä£¬²¢ÇÒÃ¿¸öµ¥´ÊµÄ¼ä¸ô¶¼ÊÇ1¸ö¿Õ¸ñ
+	 * å°†SQLè¯­å¥å˜æˆä¸€æ¡è¯­å¥ï¼Œå¹¶ä¸”æ¯ä¸ªå•è¯çš„é—´éš”éƒ½æ˜¯1ä¸ªç©ºæ ¼
 	 * 
-	 * @param sql SQLÓï¾ä
-	 * @return Èç¹ûsqlÊÇNULL·µ»Ø¿Õ£¬·ñÔò·µ»Ø×ª»¯ºóµÄSQL
+	 * @param sql SQLè¯­å¥
+	 * @return å¦‚æœsqlæ˜¯NULLè¿”å›ç©ºï¼Œå¦åˆ™è¿”å›è½¬åŒ–åçš„SQL
 	 */
 	protected String getLineSql(String sql) {
 		return sql.replaceAll("[\r\n]", " ").replaceAll("\\s{2,}", " ");
 	}
 
 	/**
-	 * µÃµ½SQLµÚÒ»¸öÕıÈ·µÄFROMµÄµÄ²åÈëµã
+	 * å¾—åˆ°SQLç¬¬ä¸€ä¸ªæ­£ç¡®çš„FROMçš„çš„æ’å…¥ç‚¹
 	 */
 	protected int getAfterFormInsertPoint(String querySelect) {
 		String regex = "\\s+FROM\\s+";
@@ -78,10 +78,10 @@ public abstract class AbstractDialect implements DBDialect{
 	}
 
 	/**
-	 * ÅĞ¶ÏÀ¨ºÅ"()"ÊÇ·ñÆ¥Åä,²¢²»»áÅĞ¶ÏÅÅÁĞË³ĞòÊÇ·ñÕıÈ·
+	 * åˆ¤æ–­æ‹¬å·"()"æ˜¯å¦åŒ¹é…,å¹¶ä¸ä¼šåˆ¤æ–­æ’åˆ—é¡ºåºæ˜¯å¦æ­£ç¡®
 	 * 
-	 * @param text ÒªÅĞ¶ÏµÄÎÄ±¾
-	 * @return Èç¹ûÆ¥Åä·µ»ØTRUE,·ñÔò·µ»ØFALSE
+	 * @param text è¦åˆ¤æ–­çš„æ–‡æœ¬
+	 * @return å¦‚æœåŒ¹é…è¿”å›TRUE,å¦åˆ™è¿”å›FALSE
 	 */
 	private boolean isBracketCanPartnership(String text) {
 		if (text == null || (getIndexOfCount(text, '(') != getIndexOfCount(text, ')'))) {
@@ -91,9 +91,9 @@ public abstract class AbstractDialect implements DBDialect{
 	}
 
 	/**
-	 * µÃµ½Ò»¸ö×Ö·ûÔÚÁíÒ»¸ö×Ö·û´®ÖĞ³öÏÖµÄ´ÎÊı
-	 * @param text	ÎÄ±¾
-	 * @param ch    ×Ö·û
+	 * å¾—åˆ°ä¸€ä¸ªå­—ç¬¦åœ¨å¦ä¸€ä¸ªå­—ç¬¦ä¸²ä¸­å‡ºç°çš„æ¬¡æ•°
+	 * @param text	æ–‡æœ¬
+	 * @param ch    å­—ç¬¦
 	 */
 	private int getIndexOfCount(String text, char ch) {
 		int count = 0;

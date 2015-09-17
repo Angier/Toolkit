@@ -12,7 +12,7 @@ public class IpHelper {
 	private static final Logger logger = Logger.getLogger(IpHelper.class);
 	
 	/**
-	 * »ñÈ¡¿Í»§µÄÕæÊµIP
+	 * è·å–å®¢æˆ·çš„çœŸå®IP
 	 */
 	public static String getClientIP(HttpServletRequest request) {   
 	     String ipAddress = "";   
@@ -27,7 +27,7 @@ public class IpHelper {
 	     if(ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {   
 	    	 ipAddress = request.getRemoteAddr();   
 	    	 if(ipAddress.equals("127.0.0.1")){   
-	    		 //¸ù¾İÍø¿¨È¡±¾»úÅäÖÃµÄIP   
+	    		 //æ ¹æ®ç½‘å¡å–æœ¬æœºé…ç½®çš„IP   
 	    		 InetAddress inet=null;   
 	    		 try {   
 	    			 inet = InetAddress.getLocalHost();   
@@ -39,7 +39,7 @@ public class IpHelper {
 	            
 	     }   
 	  
-	     //¶ÔÓÚÍ¨¹ı¶à¸ö´úÀíµÄÇé¿ö£¬µÚÒ»¸öIPÎª¿Í»§¶ËÕæÊµIP,¶à¸öIP°´ÕÕ','·Ö¸î   
+	     //å¯¹äºé€šè¿‡å¤šä¸ªä»£ç†çš„æƒ…å†µï¼Œç¬¬ä¸€ä¸ªIPä¸ºå®¢æˆ·ç«¯çœŸå®IP,å¤šä¸ªIPæŒ‰ç…§','åˆ†å‰²   
 	     if(ipAddress!=null && ipAddress.length()>15){ //"***.***.***.***".length() = 15   
 	         if(ipAddress.indexOf(",")>0){   
 	             ipAddress = ipAddress.substring(0,ipAddress.indexOf(","));   
@@ -49,7 +49,7 @@ public class IpHelper {
 	  } 
 	
 	/**
-	 * »ñÈ¡·şÎñÆ÷½ÚµãIP
+	 * è·å–æœåŠ¡å™¨èŠ‚ç‚¹IP
 	 */
 	public static String getServerIP() {   
 		String ipAddress = ""; 
@@ -63,7 +63,7 @@ public class IpHelper {
 				}
 			}
 		} catch (UnknownHostException e) {
-			logger.error("»ñÈ¡½ÚµãIPÒì³££º",e);
+			logger.error("è·å–èŠ‚ç‚¹IPå¼‚å¸¸ï¼š",e);
 		}
 		return ipAddress;
 	}

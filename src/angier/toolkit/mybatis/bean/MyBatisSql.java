@@ -5,20 +5,20 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * mybatisSQl¼°²ÎÊı
+ * mybatisSQlåŠå‚æ•°
  * @author liusz
- * @date 2013-1-27 ÏÂÎç4:47:11
+ * @date 2013-1-27 ä¸‹åˆ4:47:11
  * @version 1.0
  * @since 1.0
  * */
 public class MyBatisSql {
 	/** 
-     * ÔËĞĞÆÚ sql 
+     * è¿è¡ŒæœŸ sql 
      */  
     private String sql;  
       
     /** 
-     * ²ÎÊı Êı×é 
+     * å‚æ•° æ•°ç»„ 
      */  
     private Object[] parameters;
 

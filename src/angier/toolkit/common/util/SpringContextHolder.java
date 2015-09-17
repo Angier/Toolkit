@@ -5,7 +5,7 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 /**
- * ÒÔ¾²Ì¬±äÁ¿±£´æSpring ApplicationContext, ¿ÉÔÚÈÎºÎ´úÂëÈÎºÎµØ·½ÈÎºÎÊ±ºòÖĞÈ¡³öApplicaitonContext.
+ * ä»¥é™æ€å˜é‡ä¿å­˜Spring ApplicationContext, å¯åœ¨ä»»ä½•ä»£ç ä»»ä½•åœ°æ–¹ä»»ä½•æ—¶å€™ä¸­å–å‡ºApplicaitonContext.
  * @version 1.0
  * @since 1.0
  * */
@@ -16,14 +16,14 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
     private static Logger logger = LoggerFactory.getLogger(SpringContextHolder.class);
 
     /**
-     * È¡µÃ´æ´¢ÔÚ¾²Ì¬±äÁ¿ÖĞµÄApplicationContext.
+     * å–å¾—å­˜å‚¨åœ¨é™æ€å˜é‡ä¸­çš„ApplicationContext.
      */
     public static ApplicationContext getApplicationContext() {
         return applicationContext;
     }
 
     /**
-     * ´Ó¾²Ì¬±äÁ¿applicationContextÖĞÈ¡µÃBean, ×Ô¶¯×ªĞÍÎªËù¸³Öµ¶ÔÏóµÄÀàĞÍ.
+     * ä»é™æ€å˜é‡applicationContextä¸­å–å¾—Bean, è‡ªåŠ¨è½¬å‹ä¸ºæ‰€èµ‹å€¼å¯¹è±¡çš„ç±»å‹.
      */
     @SuppressWarnings("unchecked")
 	public static <T> T getBean(String name) {
@@ -31,29 +31,29 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
     }
 
     /**
-     * ´Ó¾²Ì¬±äÁ¿applicationContextÖĞÈ¡µÃBean, ×Ô¶¯×ªĞÍÎªËù¸³Öµ¶ÔÏóµÄÀàĞÍ.
+     * ä»é™æ€å˜é‡applicationContextä¸­å–å¾—Bean, è‡ªåŠ¨è½¬å‹ä¸ºæ‰€èµ‹å€¼å¯¹è±¡çš„ç±»å‹.
      */
     public static <T> T getBean(Class<T> requiredType) {
         return applicationContext.getBean(requiredType);
     }
 
     /**
-     * Çå³ıSpringContextHolderÖĞµÄApplicationContextÎªNull.
+     * æ¸…é™¤SpringContextHolderä¸­çš„ApplicationContextä¸ºNull.
      */
     public static void cleanHolder() {
-        logger.debug("Çå³ıSpringContextHolderÖĞµÄApplicationContext:" + applicationContext);
+        logger.debug("æ¸…é™¤SpringContextHolderä¸­çš„ApplicationContext:" + applicationContext);
         applicationContext = null;
     }
 
     /**
-     * ÊµÏÖApplicationContextAware½Ó¿Ú, ×¢ÈëContextµ½¾²Ì¬±äÁ¿ÖĞ.
+     * å®ç°ApplicationContextAwareæ¥å£, æ³¨å…¥Contextåˆ°é™æ€å˜é‡ä¸­.
      */
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) {
-        logger.debug("×¢ÈëApplicationContextµ½SpringContextHolder:" + applicationContext);
+        logger.debug("æ³¨å…¥ApplicationContextåˆ°SpringContextHolder:" + applicationContext);
 
         if (SpringContextHolder.applicationContext != null) {
-                logger.warn("SpringContextHolderÖĞµÄApplicationContext±»¸²¸Ç, Ô­ÓĞApplicationContextÎª:"
+                logger.warn("SpringContextHolderä¸­çš„ApplicationContextè¢«è¦†ç›–, åŸæœ‰ApplicationContextä¸º:"
                                 + SpringContextHolder.applicationContext);
         }
 
@@ -61,7 +61,7 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
     }
 
     /**
-     * ÊµÏÖDisposableBean½Ó¿Ú, ÔÚContext¹Ø±ÕÊ±ÇåÀí¾²Ì¬±äÁ¿.
+     * å®ç°DisposableBeanæ¥å£, åœ¨Contextå…³é—­æ—¶æ¸…ç†é™æ€å˜é‡.
      */
     @Override
     public void destroy() throws Exception {

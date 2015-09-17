@@ -3,7 +3,7 @@ package angier.toolkit.mybatis.bean;
 import java.io.Serializable;
 
 /**
- * Æ¥Åä½âÎöÅäÖÃÎÄ¼ş - sysprofile.propertiesÖĞ key:valueµÄÏî
+ * åŒ¹é…è§£æé…ç½®æ–‡ä»¶ - sysprofile.propertiesä¸­ key:valueçš„é¡¹
  * @version 1.0
  * @since 1.0
  * */

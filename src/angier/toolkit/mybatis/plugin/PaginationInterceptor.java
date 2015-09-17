@@ -41,9 +41,9 @@ import angier.toolkit.mybatis.dialect.DBDialect;
 import angier.toolkit.mybatis.dialect.MySql5Dialect;
 import angier.toolkit.mybatis.dialect.OracleDialect;
 /**
- * Êı¾İ¿â·ÖÒ³À¹½ØÊµÏÖ
+ * æ•°æ®åº“åˆ†é¡µæ‹¦æˆªå®ç°
  * @author liusz
- * @date 2013-1-27 ÏÂÎç3:31:13
+ * @date 2013-1-27 ä¸‹åˆ3:31:13
  * @version 1.0
  * @since 1.0
  * */
@@ -51,10 +51,10 @@ import angier.toolkit.mybatis.dialect.OracleDialect;
 public class PaginationInterceptor implements Interceptor{
 
 	private final static Log log = LogFactory.getLog(PaginationInterceptor.class);
-	/** mapper.xmlÖĞĞèÒªÀ¹½ØµÄID(ÕıÔòÆ¥Åä) **/
+	/** mapper.xmlä¸­éœ€è¦æ‹¦æˆªçš„ID(æ­£åˆ™åŒ¹é…) **/
 	private static final ObjectFactory DEFAULT_OBJECT_FACTORY = new DefaultObjectFactory();
 	private static final ObjectWrapperFactory DEFAULT_OBJECT_WRAPPER_FACTORY = new DefaultObjectWrapperFactory();
-	private static String PAGESQL_ID = "pageSqlId";// ĞèÒªÀ¹½ØµÄID(ÕıÔòÆ¥Åä)
+	private static String PAGESQL_ID = "pageSqlId";// éœ€è¦æ‹¦æˆªçš„ID(æ­£åˆ™åŒ¹é…)
 	private static String EPAGESQL_ID = "exportSqlId";
 	private String pageSqlId;
 	private String ePageSqlId;
@@ -70,14 +70,14 @@ public class PaginationInterceptor implements Interceptor{
 			MetaObject metaStatementHandler = MetaObject.forObject(
 					statementHandler, DEFAULT_OBJECT_FACTORY, DEFAULT_OBJECT_WRAPPER_FACTORY);
 			
-			// ·ÖÀë´úÀí¶ÔÏóÁ´(ÓÉÓÚÄ¿±êÀà¿ÉÄÜ±»¶à¸öÀ¹½ØÆ÷À¹½Ø£¬´Ó¶øĞÎ³É¶à´Î´úÀí£¬Í¨¹ıÏÂÃæµÄÁ½´ÎÑ­»·
-			// ¿ÉÒÔ·ÖÀë³ö×îÔ­Ê¼µÄµÄÄ¿±êÀà)
+			// åˆ†ç¦»ä»£ç†å¯¹è±¡é“¾(ç”±äºç›®æ ‡ç±»å¯èƒ½è¢«å¤šä¸ªæ‹¦æˆªå™¨æ‹¦æˆªï¼Œä»è€Œå½¢æˆå¤šæ¬¡ä»£ç†ï¼Œé€šè¿‡ä¸‹é¢çš„ä¸¤æ¬¡å¾ªç¯
+			// å¯ä»¥åˆ†ç¦»å‡ºæœ€åŸå§‹çš„çš„ç›®æ ‡ç±»)
 			while (metaStatementHandler.hasGetter("h")) {
 				Object object = metaStatementHandler.getValue("h");
 				metaStatementHandler = MetaObject.forObject(object,
 						DEFAULT_OBJECT_FACTORY, DEFAULT_OBJECT_WRAPPER_FACTORY);
 			}
-			// ·ÖÀë×îºóÒ»¸ö´úÀí¶ÔÏóµÄÄ¿±êÀà
+			// åˆ†ç¦»æœ€åä¸€ä¸ªä»£ç†å¯¹è±¡çš„ç›®æ ‡ç±»
 			while (metaStatementHandler.hasGetter("target")) {
 				Object object = metaStatementHandler.getValue("target");
 				metaStatementHandler = MetaObject.forObject(object, DEFAULT_OBJECT_FACTORY, DEFAULT_OBJECT_WRAPPER_FACTORY);
@@ -87,21 +87,21 @@ public class PaginationInterceptor implements Interceptor{
 			BoundSql boundSql = delegate.getBoundSql();
 			Object parameterObject = boundSql.getParameterObject();
 			if(parameterObject == null){
-				log.error("²ÎÊı¶ÔÏóÉĞÎ´ÊµÀı»¯£¡");
-				throw new NullPointerException("²ÎÊı¶ÔÏóÉĞÎ´ÊµÀı»¯£¡");
+				log.error("å‚æ•°å¯¹è±¡å°šæœªå®ä¾‹åŒ–ï¼");
+				throw new NullPointerException("å‚æ•°å¯¹è±¡å°šæœªå®ä¾‹åŒ–ï¼");
 			}
 			Map<String, Object> parameterMap = (Map<String, Object>) parameterObject;
 			PageBean pageBean = (PageBean) parameterMap.get("pageBean");
 			if(pageBean == null){
-				log.error("·ÖÒ³¶ÔÏó²»´æÔÚ£¡");
-				throw new NullPointerException("·ÖÒ³¶ÔÏó²»´æÔÚ£¡");
+				log.error("åˆ†é¡µå¯¹è±¡ä¸å­˜åœ¨ï¼");
+				throw new NullPointerException("åˆ†é¡µå¯¹è±¡ä¸å­˜åœ¨ï¼");
 			}
 			String querySql = boundSql.getSql();
 			if(mappedStatement.getId().matches(ePageSqlId)){
 				MyBatisSql myBatisSql = getIbatisSql(boundSql, mappedStatement);
 				pageBean.setMyBatisSql(myBatisSql);
 			}
-			// È¡µÃÁ¬½Ó 
+			// å–å¾—è¿æ¥ 
 			Connection connection = (Connection) invocation.getArgs()[0];
 			DBDialect.Type databaseType  = null;
 			try{
@@ -120,14 +120,14 @@ public class PaginationInterceptor implements Interceptor{
 					dialect = new OracleDialect();break;
 			}
 			String countSql = dialect.getCountString(querySql);
-			log.debug("²éÑ¯×Ü¼ÇÂ¼SQL:" + countSql);
+			log.debug("æŸ¥è¯¢æ€»è®°å½•SQL:" + countSql);
 			BoundSql newBoundSql = new BoundSql(mappedStatement
 					.getConfiguration(), countSql, boundSql
 					.getParameterMappings(), parameterObject);
 			
 			copyAdditionalParametersByBoundSql(newBoundSql,boundSql);
 			
-			/*-------Ö§³ÖforeahÖĞµÄ²ÎÊı»ñÈ¡--------*/
+			/*-------æ”¯æŒforeahä¸­çš„å‚æ•°è·å–--------*/
 			Field metaParamsField = ReflectionUtils.getAccessibleField(boundSql, "metaParameters");
 			if (metaParamsField != null) {
                 MetaObject mo = (MetaObject) ReflectionUtils.getFieldValue(boundSql, "metaParameters");
@@ -145,15 +145,15 @@ public class PaginationInterceptor implements Interceptor{
 				count = (rs.next()) ? rs.getInt("count") : 0;
 				rs.close();
 			}catch(SQLException e){
-				throw new Exception("Ö´ĞĞ¼ÇÂ¼×ÜÊıSQLÊ±·¢ÉúÒì³£",e);
+				throw new Exception("æ‰§è¡Œè®°å½•æ€»æ•°SQLæ—¶å‘ç”Ÿå¼‚å¸¸",e);
 			}finally{
 				try {
 					if (ps != null) ps.close();
 				} catch (SQLException e) {
-					throw new Exception("¹Ø±Õ×´Ì¬Ê±·¢ÉúÒì³£", e);
+					throw new Exception("å…³é—­çŠ¶æ€æ—¶å‘ç”Ÿå¼‚å¸¸", e);
 				}
 			}
-			// °Ñ¼ÇÂ¼×ÜÊı·ÅÈë¶ÔÏópageBeanÖĞ
+			// æŠŠè®°å½•æ€»æ•°æ”¾å…¥å¯¹è±¡pageBeanä¸­
 			pageBean.setTotalItems(count);
 			String originalSql = (String)metaStatementHandler.getValue("delegate.boundSql.sql");
 			metaStatementHandler.setValue("delegate.boundSql.sql", dialect.getLimitString(originalSql, pageBean.getOffset(), pageBean.getPageSize()) );
@@ -182,8 +182,8 @@ public class PaginationInterceptor implements Interceptor{
 	
 	/**
 	 * 
-	 * @param id xml ÖĞsqlµÄid £¬Èç <select id="XXX">ÖĞµÄ"XXX"
-	 * @param parameterObject ´«¸øÕâÌõsqlµÄ²ÎÊı
+	 * @param id xml ä¸­sqlçš„id ï¼Œå¦‚ <select id="XXX">ä¸­çš„"XXX"
+	 * @param parameterObject ä¼ ç»™è¿™æ¡sqlçš„å‚æ•°
 	 * @return
 	 */
 	public MyBatisSql getIbatisSql(BoundSql boundSql,MappedStatement ms) {
@@ -225,10 +225,10 @@ public class PaginationInterceptor implements Interceptor{
 
 	/**
 	 * 
-	 * ÎªÁË½â¾ömybatis·ÖÒ³²å¼şÔÚ½øĞĞ
-	 * select from in (xx,xx,xx)Ê±³­²»µ½²ÎÊıµÄbug¶ø´´½¨µÄÀà
-	 * Ö÷ÒªÊÇÎªÁË½«Ô­Ê¼BoundSql²ÎÊıµÄadditionalParameters¸´ÖÆµ½ĞÂ¶ÔÏóµÄÀïÃæÈ¥
-	 * mybatisÔ­Ê¼ÀàÃ»ÓĞÌá¹©additionalParametersµÄ¸³Öµ½Ó¿Ú
+	 * ä¸ºäº†è§£å†³mybatisåˆ†é¡µæ’ä»¶åœ¨è¿›è¡Œ
+	 * select from in (xx,xx,xx)æ—¶æŠ„ä¸åˆ°å‚æ•°çš„bugè€Œåˆ›å»ºçš„ç±»
+	 * ä¸»è¦æ˜¯ä¸ºäº†å°†åŸå§‹BoundSqlå‚æ•°çš„additionalParameterså¤åˆ¶åˆ°æ–°å¯¹è±¡çš„é‡Œé¢å»
+	 * mybatisåŸå§‹ç±»æ²¡æœ‰æä¾›additionalParametersçš„èµ‹å€¼æ¥å£
 	 */
 	private void copyAdditionalParametersByBoundSql(BoundSql target,BoundSql source){
 		List<ParameterMapping> parameterMappings = source.getParameterMappings();

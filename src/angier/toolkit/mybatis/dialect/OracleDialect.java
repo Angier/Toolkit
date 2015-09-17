@@ -2,7 +2,7 @@ package angier.toolkit.mybatis.dialect;
 
 
 /**
- * Oracle·½ÑÔ
+ * Oracleæ–¹è¨€
  * @version 1.0
  * @since 1.0
  * */

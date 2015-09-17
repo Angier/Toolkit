@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 
 /**
- * ·´Éä¹¤¾ßÀà. Ìá¹©µ÷ÓÃgetter/setter·½·¨, ·ÃÎÊË½ÓĞ±äÁ¿, µ÷ÓÃË½ÓĞ·½·¨, »ñÈ¡·ºĞÍÀàĞÍClassµÈUtilº¯Êı.
+ * åå°„å·¥å…·ç±». æä¾›è°ƒç”¨getter/setteræ–¹æ³•, è®¿é—®ç§æœ‰å˜é‡, è°ƒç”¨ç§æœ‰æ–¹æ³•, è·å–æ³›å‹ç±»å‹Classç­‰Utilå‡½æ•°.
  * 
  * @version 1.0
  * @since 1.0
@@ -25,7 +25,7 @@ public class ReflectionUtils {
 
 
 	/**
-	 * µ÷ÓÃGetter·½·¨.
+	 * è°ƒç”¨Getteræ–¹æ³•.
 	 */
 	public static Object invokeGetterMethod(Object obj, String propertyName) {
 		String getterMethodName = "get" + StringUtils.capitalize(propertyName);
@@ -34,7 +34,7 @@ public class ReflectionUtils {
 	}
 
 	/**
-	 * µ÷ÓÃSetter·½·¨.Ê¹ÓÃvalueµÄClassÀ´²éÕÒSetter·½·¨.
+	 * è°ƒç”¨Setteræ–¹æ³•.ä½¿ç”¨valueçš„Classæ¥æŸ¥æ‰¾Setteræ–¹æ³•.
 	 */
 	public static void invokeSetterMethod(Object obj, String propertyName,
 			Object value) {
@@ -42,10 +42,10 @@ public class ReflectionUtils {
 	}
 
 	/**
-	 * µ÷ÓÃSetter·½·¨.
+	 * è°ƒç”¨Setteræ–¹æ³•.
 	 * 
 	 * @param propertyType
-	 *            ÓÃÓÚ²éÕÒSetter·½·¨,Îª¿ÕÊ±Ê¹ÓÃvalueµÄClassÌæ´ú.
+	 *            ç”¨äºæŸ¥æ‰¾Setteræ–¹æ³•,ä¸ºç©ºæ—¶ä½¿ç”¨valueçš„Classæ›¿ä»£.
 	 */
 	public static void invokeSetterMethod(Object obj, String propertyName,
 			Object value, Class<?> propertyType) {
@@ -56,7 +56,7 @@ public class ReflectionUtils {
 	}
 
 	/**
-	 * Ö±½Ó¶ÁÈ¡¶ÔÏóÊôĞÔÖµ, ÎŞÊÓprivate/protectedĞŞÊÎ·û, ²»¾­¹ıgetterº¯Êı.
+	 * ç›´æ¥è¯»å–å¯¹è±¡å±æ€§å€¼, æ— è§†private/protectedä¿®é¥°ç¬¦, ä¸ç»è¿‡getterå‡½æ•°.
 	 */
 	public static Object getFieldValue(final Object obj, final String fieldName) {
 		Field field = getAccessibleField(obj, fieldName);
@@ -70,13 +70,13 @@ public class ReflectionUtils {
 		try {
 			result = field.get(obj);
 		} catch (IllegalAccessException e) {
-			logger.error("²»¿ÉÄÜÅ×³öµÄÒì³£{}", e.getMessage());
+			logger.error("ä¸å¯èƒ½æŠ›å‡ºçš„å¼‚å¸¸{}", e.getMessage());
 		}
 		return result;
 	}
 
 	/**
-	 * Ö±½ÓÉèÖÃ¶ÔÏóÊôĞÔÖµ, ÎŞÊÓprivate/protectedĞŞÊÎ·û, ²»¾­¹ısetterº¯Êı.
+	 * ç›´æ¥è®¾ç½®å¯¹è±¡å±æ€§å€¼, æ— è§†private/protectedä¿®é¥°ç¬¦, ä¸ç»è¿‡setterå‡½æ•°.
 	 */
 	public static void setFieldValue(final Object obj, final String fieldName,
 			final Object value) {
@@ -90,14 +90,14 @@ public class ReflectionUtils {
 		try {
 			field.set(obj, value);
 		} catch (IllegalAccessException e) {
-			logger.error("²»¿ÉÄÜÅ×³öµÄÒì³£:{}", e.getMessage());
+			logger.error("ä¸å¯èƒ½æŠ›å‡ºçš„å¼‚å¸¸:{}", e.getMessage());
 		}
 	}
 
 	/**
-	 * Ñ­»·ÏòÉÏ×ªĞÍ, »ñÈ¡¶ÔÏóµÄDeclaredField, ²¢Ç¿ÖÆÉèÖÃÎª¿É·ÃÎÊ.
+	 * å¾ªç¯å‘ä¸Šè½¬å‹, è·å–å¯¹è±¡çš„DeclaredField, å¹¶å¼ºåˆ¶è®¾ç½®ä¸ºå¯è®¿é—®.
 	 * 
-	 * ÈçÏòÉÏ×ªĞÍµ½ObjectÈÔÎŞ·¨ÕÒµ½, ·µ»Ønull.
+	 * å¦‚å‘ä¸Šè½¬å‹åˆ°Objectä»æ— æ³•æ‰¾åˆ°, è¿”å›null.
 	 */
 	public static Field getAccessibleField(final Object obj,
 			final String fieldName) {
@@ -108,14 +108,14 @@ public class ReflectionUtils {
 				field.setAccessible(true);
 				return field;
 			} catch (NoSuchFieldException e) {// NOSONAR
-				// Field²»ÔÚµ±Ç°Àà¶¨Òå,¼ÌĞøÏòÉÏ×ªĞÍ
+				// Fieldä¸åœ¨å½“å‰ç±»å®šä¹‰,ç»§ç»­å‘ä¸Šè½¬å‹
 			}
 		}
 		return null;
 	}
 
 	/**
-	 * ¶ÔÓÚ±»cglib AOP¹ıµÄ¶ÔÏó, È¡µÃÕæÊµµÄClassÀàĞÍ.
+	 * å¯¹äºè¢«cglib AOPè¿‡çš„å¯¹è±¡, å–å¾—çœŸå®çš„Classç±»å‹.
 	 */
 	public static Class<?> getUserClass(Class<?> clazz) {
 		if (clazz != null && clazz.getName().contains(CGLIB_CLASS_SEPARATOR)) {
@@ -128,7 +128,7 @@ public class ReflectionUtils {
 	}
 
 	/**
-	 * Ö±½Óµ÷ÓÃ¶ÔÏó·½·¨, ÎŞÊÓprivate/protectedĞŞÊÎ·û. ÓÃÓÚÒ»´ÎĞÔµ÷ÓÃµÄÇé¿ö.
+	 * ç›´æ¥è°ƒç”¨å¯¹è±¡æ–¹æ³•, æ— è§†private/protectedä¿®é¥°ç¬¦. ç”¨äºä¸€æ¬¡æ€§è°ƒç”¨çš„æƒ…å†µ.
 	 */
 	public static Object invokeMethod(final Object obj,
 			final String methodName, final Class<?>[] parameterTypes,
@@ -147,9 +147,9 @@ public class ReflectionUtils {
 	}
 
 	/**
-	 * Ñ­»·ÏòÉÏ×ªĞÍ, »ñÈ¡¶ÔÏóµÄDeclaredMethod,²¢Ç¿ÖÆÉèÖÃÎª¿É·ÃÎÊ. ÈçÏòÉÏ×ªĞÍµ½ObjectÈÔÎŞ·¨ÕÒµ½, ·µ»Ønull.
+	 * å¾ªç¯å‘ä¸Šè½¬å‹, è·å–å¯¹è±¡çš„DeclaredMethod,å¹¶å¼ºåˆ¶è®¾ç½®ä¸ºå¯è®¿é—®. å¦‚å‘ä¸Šè½¬å‹åˆ°Objectä»æ— æ³•æ‰¾åˆ°, è¿”å›null.
 	 * 
-	 * ÓÃÓÚ·½·¨ĞèÒª±»¶à´Îµ÷ÓÃµÄÇé¿ö. ÏÈÊ¹ÓÃ±¾º¯ÊıÏÈÈ¡µÃMethod,È»ºóµ÷ÓÃMethod.invoke(Object obj, Object...
+	 * ç”¨äºæ–¹æ³•éœ€è¦è¢«å¤šæ¬¡è°ƒç”¨çš„æƒ…å†µ. å…ˆä½¿ç”¨æœ¬å‡½æ•°å…ˆå–å¾—Method,ç„¶åè°ƒç”¨Method.invoke(Object obj, Object...
 	 * args)
 	 */
 	public static Method getAccessibleMethod(final Object obj,
@@ -166,14 +166,14 @@ public class ReflectionUtils {
 				return method;
 
 			} catch (NoSuchMethodException e) {// NOSONAR
-				// Method²»ÔÚµ±Ç°Àà¶¨Òå,¼ÌĞøÏòÉÏ×ªĞÍ
+				// Methodä¸åœ¨å½“å‰ç±»å®šä¹‰,ç»§ç»­å‘ä¸Šè½¬å‹
 			}
 		}
 		return null;
 	}
 
 	/**
-	 * Í¨¹ı·´Éä, »ñµÃClass¶¨ÒåÖĞÉùÃ÷µÄ¸¸ÀàµÄ·ºĞÍ²ÎÊıµÄÀàĞÍ. ÈçÎŞ·¨ÕÒµ½, ·µ»ØObject.class. eg. public UserDao
+	 * é€šè¿‡åå°„, è·å¾—Classå®šä¹‰ä¸­å£°æ˜çš„çˆ¶ç±»çš„æ³›å‹å‚æ•°çš„ç±»å‹. å¦‚æ— æ³•æ‰¾åˆ°, è¿”å›Object.class. eg. public UserDao
 	 * extends HibernateDao<User>
 	 * 
 	 * @param clazz
@@ -187,9 +187,9 @@ public class ReflectionUtils {
 	}
 
 	/**
-	 * Í¨¹ı·´Éä, »ñµÃClass¶¨ÒåÖĞÉùÃ÷µÄ¸¸ÀàµÄ·ºĞÍ²ÎÊıµÄÀàĞÍ. ÈçÎŞ·¨ÕÒµ½, ·µ»ØObject.class.
+	 * é€šè¿‡åå°„, è·å¾—Classå®šä¹‰ä¸­å£°æ˜çš„çˆ¶ç±»çš„æ³›å‹å‚æ•°çš„ç±»å‹. å¦‚æ— æ³•æ‰¾åˆ°, è¿”å›Object.class.
 	 * 
-	 * Èçpublic UserDao extends HibernateDao<User,Long>
+	 * å¦‚public UserDao extends HibernateDao<User,Long>
 	 * 
 	 * @param clazz
 	 *            clazz The class to introspect
@@ -228,7 +228,7 @@ public class ReflectionUtils {
 	}
 
 	/**
-	 * ½«·´ÉäÊ±µÄchecked exception×ª»»Îªunchecked exception.
+	 * å°†åå°„æ—¶çš„checked exceptionè½¬æ¢ä¸ºunchecked exception.
 	 */
 	public static RuntimeException convertReflectionExceptionToUnchecked(
 			Exception e) {
